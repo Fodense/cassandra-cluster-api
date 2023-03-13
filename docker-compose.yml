@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  cas1:
+    container_name: cas1
+    image: cassandra:4.1.0
+    ports:
+      - "9042:9042"
+
+  cas2:
+    container_name: cas2
+    image: cassandra:4.1.0
+    environment:
+      - CASSANDRA_SEEDS=cas1
+    ports:
+      - "9043:9042"
+    depends_on:
+      - cas1
+
+  cas3:
+    container_name: cas3
+    image: cassandra:4.1.0
+    environment:
+      - CASSANDRA_SEEDS=cas2
+    ports:
+      - "9044:9042"
+    depends_on:
+      - cas2

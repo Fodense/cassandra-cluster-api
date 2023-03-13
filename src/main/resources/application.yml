@@ -1,0 +1,10 @@
+server:
+  port: 8888
+
+spring:
+  data:
+    cassandra:
+      keyspace-name: demo
+      schema-action: create_if_not_exists
+      contact-points: localhost
+      port: 9042
